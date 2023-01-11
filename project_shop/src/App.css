@@ -37,5 +37,5 @@ table {border-collapse: collapse;border-spacing: 0; }
   background-image: url(./img/main01.jpeg); background-size: cover; background-position: center;}
 
 
-@media (min-width: 576px)
+@media (max-width: 576px)
 {.container{width: 570px;}}
