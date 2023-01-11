@@ -7,7 +7,8 @@ import {Nav, Navbar, NavDropdown, Container} from 'react-bootstrap';
 //public 폴더 아마자를 쓸때에는 <img src={process.env.PUBLIC_URL + '이미지경로'} 이렇게 쓰면됨
 // import mainVisual from './img/main01.jpeg';
 
-import product from './data.js';
+import About from './about';
+import Main from './Main';
 /*export, import
 다른 파일에 있는 함수, 변수를 가져올때 사용한다. 
 한개의 함수를 내보낼때는 export default 변수명;
@@ -15,15 +16,20 @@ import product from './data.js';
 한개 이상의 함수를 내보낼때는 export {변수명, 변수명};
 ->import {변수명, 변수명} from '파일경로'; 로 적어주면된다.
 */
-import {Routes,Route,Link} from 'react-router-dom';
+import {Routes,Route,Link,useNavigate, Outlet} from 'react-router-dom';
 /*
 router 사용시 반드시 import해와야한다. 
 <Routes>
 <Route path="경로지정" element={해당 경로에서 출력할 컴포넌트/태그}/>
 </Routes>
 <Link to="Route에서 지정한 경로"></Link>
+useNavigate? Link대신 사용 페이지 이동하는 함수로 경로말고(-1)뒤로가기 (1)앞으로가기로도 사용가능
+let navigate = useNavigate();
+<Nav onClick={()=>{navigate('/about')}}></> 
 */
 function App() {
+  let navigate = useNavigate();
+
   return (
     <div className="App">
       <Navbar collapseOnSelect expand="lg" variant="dark">
@@ -32,75 +38,40 @@ function App() {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link><Link to="/about">About</Link></Nav.Link>
+            <Nav.Link onClick={()=>{navigate('./about')}}>About</Nav.Link>
+            <Nav.Link onClick={()=>{navigate('./event')}}>Event</Nav.Link>
+            {/* useNavigate 이용하여 페이지 이동시키기 (Link대신 사용) */}
           </Nav>
         </Navbar.Collapse>
       </Container>
     </Navbar>
     <Routes>
-      <Route path="/" element={<Main/>}/>
+      <Route path="/" element={<Main/>}>
+        <Route path="history" element={<div>히스토리보여주긔</div>}/>
+        {/* 
+        서브경로 만들수 있는 nested routes
+        2뎁스 경로를 만들거나 여러 페이지를 같이 보여줄때 유용함 
+        페이지안에 같이 넣고싶은 위치에 <Outlet></Outlet>으로 넣을 공간을 지정해줘야하면 됨
+        동일한 코드 중복을 막을수있음
+        */}
+      </Route>
+      <Route path='*' element={<div className='info'>주소를 잘못입력하셨습니다.</div>}/>
+      {/* 없는 주소일때, 혹은 오타로 잘못입력했을때 띄워주는 페이지 */}
       <Route path='/about' element={<About/>}/>
-    </Routes>
+      <Route path='/event' element={<Event/>}>
+        <Route path='one' element={<div className='eventInner'>신촌에서 집까지 너무 먼제 언제가지?</div>}/>
+        <Route path='two' element={<div className='eventInner'>이거까지 마무리하고 집에가서 더해야지 404페이지도해야함</div>}/>
+      </Route>
+       </Routes>
     </div>
   );
 }
 
-const Main = () =>{
-return <>
- <div className='visual'></div>
-    <ul className='productList row'>
-    {/* 데이터 출력 확인
-    <li className='col-md-4'>
-    <img src={process.env.PUBLIC_URL + './img/bag1.webp'} width="400px"></img>
-        <span>{product[0].product}</span>
-        <p>{product[0].description}</p>
-        <span>{product[0].price}</span>
-    </li> */}
-    {
-      product.map(
-        (a, i)=>{
-          return <Products product={product[i]} i={i}></Products>
-        }
-        //i는 이미지 순서번대로 뽑기위해 넘긴 props -> i는 0부터 시작하니 +1해줘야함
-      )
-    }
-    </ul>
-</>
-}
-
-const Products = (props)=>{
-  return <li className='col-md-3'>
-    <img src={process.env.PUBLIC_URL + './img/bag'+(props.i+1)+'.webp'} width="400px"></img>
-      <span>{props.product.product}</span>
-      <p>{props.product.description}</p>
-      <span>{props.product.price}</span>
-  </li>
-} 
-
-const About = () =>{
-  return <>
-  <div className='subVisual'></div>
-    <div className='infoTop'>
-      <div>HOME > ABOUT > HISTORY</div>
-      <span>THE BIRTH OF FREITAG</span>
-      <p>With a sewing machine in the kitchen and a laundry in the bathtub: Oliver Gemperle, a former roommate of Daniel and Markus Freitag, tells us how the FREITAG story began back in the early 90s.</p>
-    </div>
-    <ul className='history'>
-    <li>
-      <span>LET'S GO BACK TO 1993</span>
-      <p>My room in the apartment cost me all of 300 bucks. No wonder. The flat was a dump, the plaster was peeling off the walls in pieces as big as plates, and wheezing away in the bathroom was a gas-powered flow water heater. Directly in front of the house, trucks thundered noisily across the bridge that cut the city in two.</p>
-      <img src={process.env.PUBLIC_URL + './img/historyimg1.webp'} ></img>
-      <p>One of my two roommates was a guy called Markus Freitag. I only found out more about his plans one gray afternoon when he returned from one of the city's less salubrious industrial areas. In the trailer attached to his bike was an old tarp he'd managed to procure from a trucking company. He heaved the bulky, stinking monster of a tarp up the staircase and, with one final effort, dumped it into our living room. "I'm gonna make a bag out of it," he said. A bag. For cyclists, he explained, but one that would work for other people too. All made of recycled stuff like tarps and inner tubes and car safety belts. Right.</p>
-    </li>
-    <li>
-      <span>BETWEEN MATTRESS AND STEREO SYSTEM</span>
-      <p>In his room, between the mattress and his stereo system, Markus spread out the washed truck tarp and drew a pattern on it. Our apartment was transformed into a bag factory. When I got up in the morning – well, let's say noonish – and wanted to take a shower, the bath was awash with bits of truck tarp floating in this blackish brew. The corridor was packed with boxes full of bicycle inner tubes. Rattling away in the kitchen from morning till night was an industrial sewing machine that effortlessly drowned out the street noise. </p>
-      <img src={process.env.PUBLIC_URL + './img/historyimg2.avif'} ></img>
-      <p>In the meantime, Daniel had got back from a trip to the US and installed a computer and printer in the last free bit of space in the apartment. He was developing a database for orders, deliveries, inventories, etc. I had no idea whether he’d moved in or whether he just worked all the way through the night. Did the two brothers ever sleep? Who knows? These were exceptional circumstances, and I knew it couldn’t go on like that for ever. </p>
-    </li>
-    
-  </ul>
-  </>
+const Event = ()=>{
+  return <div>
+    <p className='info'>오늘의 이벤트!</p>
+    <Outlet></Outlet>
+  </div>
 }
 
 export default App;
