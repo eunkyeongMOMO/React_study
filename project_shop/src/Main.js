@@ -1,6 +1,6 @@
 import { Outlet } from 'react-router-dom';
-import product from './data.js';
-const Main = () =>{
+
+const Main = (props) =>{
 
  return <>
      <div className='visual'></div>
@@ -13,9 +13,9 @@ const Main = () =>{
             <span>{product[0].price}</span>
         </li> */}
         {
-          product.map(
+          props.product.map(
             (a, i)=>{
-              return <Products product={product[i]} i={i}></Products>
+              return <Products key={i} product={props.product[i]} i={i} navigate={props.navigate}/>
             }
             //i는 이미지 순서번대로 뽑기위해 넘긴 props -> i는 0부터 시작하니 +1해줘야함
           )
@@ -27,7 +27,7 @@ const Main = () =>{
     }
     
     const Products = (props)=>{
-      return <li className='col-md-3'>
+      return <li onClick={()=>{props.navigate('./detail/'+props.i)}} className='col-md-3'>
         <img src={process.env.PUBLIC_URL + './img/bag'+(props.i+1)+'.webp'} width="400px"></img>
           <span>{props.product.product}</span>
           <p>{props.product.description}</p>
