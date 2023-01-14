@@ -24,13 +24,13 @@ router 사용시 반드시 import해와야한다.
 <Route path="경로지정" element={해당 경로에서 출력할 컴포넌트/태그}/>
 </Routes>
 <Link to="Route에서 지정한 경로"></Link>
-useNavigate? Link대신 사용 페이지 이동하는 함수로 경로말고(-1)뒤로가기 (1)앞으로가기로도 사용가능
-let navigate = useNavigate();
-<Nav onClick={()=>{navigate('/about')}}></> 
+
 */
 function App() {
   let navigate = useNavigate();
-
+/* useNavigate? Link대신 사용 페이지 이동하는 함수로 경로말고(-1)뒤로가기 (1)앞으로가기로도 사용가능
+let navigate = useNavigate();
+<Nav onClick={()=>{navigate('/about')}}></> */
   return (
     <div className="App">
       <Navbar collapseOnSelect expand="lg" variant="dark">
@@ -59,7 +59,8 @@ function App() {
       <Route path='*' element={<div className='info'>주소를 잘못입력하셨습니다.</div>}/>
       {/* 없는 주소일때, 혹은 오타로 잘못입력했을때 띄워주는 페이지 */}
       <Route path='/about' element={<About/>}/>
-      <Route path='/detail/:id' element={<Detail product={product}/>}/>
+      <Route path='/detail' element={<Detail product={product}/>}/>
+      {/* <Route path='/detail/:id' element={<Detail product={product}/>}/> */}
       {/* URL파라미터 사용하기  상세페이지등 동일한 ui의 새부페이지가 여러개일때 변수를 넘겨 사용하는것*/}
       <Route path='/event' element={<Event/>}>
         <Route path='one' element={<div className='eventInner'>신촌에서 집까지 너무 먼제 언제가지?</div>}/>
