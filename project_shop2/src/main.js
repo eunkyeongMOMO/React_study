@@ -1,6 +1,5 @@
 const Main = (props)=>{
     <>
-    <div className="visual"></div>
     <ul className="row product_list">
     {
         props.bagData.map(
