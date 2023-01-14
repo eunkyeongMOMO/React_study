@@ -25,10 +25,9 @@ css 파일명 -> 컴포넌트명.module.css로 적으면 해당 컴포넌트에�
 
 
 const Detail = (props) => {
-    let {id} = useParams()
+    let {id} = useParams();
     //:id로 넘겼다면 위와 같이 변수로 지정하여 사용. 
     //useParams()메소드를 사용하여 url에 입력된 값을 받을수 있다.
-    console.log(id);
     let findProduct = props.product.find((x)=>{return x.id == id});
 
     return  <div className="container">

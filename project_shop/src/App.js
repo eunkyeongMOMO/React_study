@@ -59,7 +59,7 @@ let navigate = useNavigate();
       <Route path='*' element={<div className='info'>주소를 잘못입력하셨습니다.</div>}/>
       {/* 없는 주소일때, 혹은 오타로 잘못입력했을때 띄워주는 페이지 */}
       <Route path='/about' element={<About/>}/>
-      <Route path='/detail' element={<Detail product={product}/>}/>
+      <Route path='/detail/:id' element={<Detail product={product}/>}/>
       {/* <Route path='/detail/:id' element={<Detail product={product}/>}/> */}
       {/* URL파라미터 사용하기  상세페이지등 동일한 ui의 새부페이지가 여러개일때 변수를 넘겨 사용하는것*/}
       <Route path='/event' element={<Event/>}>
