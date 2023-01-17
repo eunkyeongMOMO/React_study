@@ -21,8 +21,13 @@ css 파일명 -> 컴포넌트명.module.css로 적으면 해당 컴포넌트에�
 // //기존 스타일 복사 + 추가
 // let NewButton = styled.button(Button)`
 // margin:20px auto;
-// `
 
+//component Lifecycle
+/**
+페이지에 장착되기도 하고 [mount]
+업데이트되기도 하고[update]
+필요가 없어지면 삭제되기도 하고 [unmount]
+ */
 
 const Detail = (props) => {
     let {id} = useParams();
