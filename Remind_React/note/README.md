@@ -60,3 +60,43 @@ const Modal = () =>{
 }
 ```
 
+### 동적 UI
+
+1. html,css로 UI를 먼저 구성
+2. UI의 현재 상태를 state로 저장
+3. state에 따라 UI가 어떻게 보일지 작성하면댐
+
+```js
+let [madal, setmodal] = useState(false);
+```
+
+**UI변경 함수는 set을 붙여서 만드는게 관습**
+
+if문 대신 삼함연산자
+조건식 ? true일때 실행할 코드 : false일때 실행할 코드
+
+```js
+{
+   modal == true ? <Modal/> : null
+}
+```
+
+글제목을 한번 더 누르면 모달창이 닫히게 해야한다. 그렇게 하려면 어떻게 코드짜야함?
+
+```js
+onclick(()=>{if(modal==false){setmodal(true)}else{setmodal(false)}})
+//!를 사용해서 짜면 더 간단하게 짤수 있다.
+onClick(()=>{setmodal(!modal)})
+```
+**!는 우측 자료값을 반대로 바꿔줌 !true == false, !false ==true**
+
+
+
+### map
+
+array.map(()=>{})
+
+1. array 자료 갯수만큼 콜백함수 실행 
+2. 첫번째 파라미터는 array안의 자료, 두번째 파라미터는 index 
+3. return 에 적혀있는걸 자료 갯수만큼 다시 array에 담아서 반환해줌
+
