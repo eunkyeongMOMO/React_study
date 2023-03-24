@@ -100,3 +100,55 @@ array.map(()=>{})
 2. 첫번째 파라미터는 array안의 자료, 두번째 파라미터는 index 
 3. return 에 적혀있는걸 자료 갯수만큼 다시 array에 담아서 반환해줌
 
+## props
+
+부모가 가지고 있는 state를 자식에게 전달하는 방법
+**부모 -> 자식으로만 전달 가능**
+ 1. <자식컴포넌트 작명 = {state이름}>
+ 2. 자식 컴포넌트의 파라미터로 props등록후 props.작명 사용
+ 3. props로 전달 받은 값은 수정이 불가하다.
+ ```js
+
+      {
+      modal == true ? <Modal posts={posts}></Modal> : null 
+      }
+
+const Modal = (props)=>{
+  return(
+      <div className="modal">
+      
+        <h4>{props.posts[0]}</h4>
+        <p>날짜</p>
+        <p>상세내용</p>
+      </div>
+  )
+}
+ ```
+ > props를 생략하고 Destructuring 방법으로도 전달이 가능하다
+
+ ```js
+       {
+      modal == true ? <Modal title={title} posts={posts}></Modal> : null 
+      }
+
+const Modal = ({posts, title})=>{
+  return(
+      <div className="modal">
+      
+        <h4>{posts[title]}</h4>
+        <p>날짜</p>
+        <p>상세내용</p>
+      </div>
+  )
+}
+```
+
+**props 타입 관리**
+```js
+import PropTypes from 'prop-types'
+
+App.prototype ={
+  title: PropTypes.number,
+  posts:PropTypes.object
+}
+```

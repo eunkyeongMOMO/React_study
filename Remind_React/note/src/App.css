@@ -27,4 +27,5 @@ img { border: 0; vertical-align: top; }
 .postList{width: 80%; padding: 20px; margin: 0 auto;}
 .postList li{width: 90%; padding: 10px; text-align: start; display: flex; justify-content: space-between; 
   align-items: center; color:#333; background:#fffeee; margin-bottom: 20px; border-radius: 20px;}
+button{background: #3678fe; color: #fff; border: none; padding: 10px; display:block; width: 150px; border-radius: 5px; margin:20px auto; }
 .modal{padding:20px; width: 80%; margin: 20px auto 50px; background: #5acedd; color:#333; border-radius: 20px;}
