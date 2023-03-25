@@ -1,10 +1,24 @@
 import './App.css';
-import { useState,useEffect } from 'react'
+import { useState,useEffect } from 'react';
+import axios from 'axios';
 import PropTypes from 'prop-types'
 App.prototype ={
   title: PropTypes.number,
   posts:PropTypes.object
 }
+//axios 되는지 확인하긔
+axios({
+  method :'post',
+  url:'',
+  data:{
+  }
+})
+.then((rsp)=>{
+console.log(rsp)
+})
+.catch((error)=>{
+  console.log(error);
+})
 
 function App() {
   let [posts, setPosts] = useState(['첫번째','두번째','세번째']);
@@ -86,4 +100,3 @@ const Modal = ({posts, title, subjectModify})=>{
   )
 }
 export default App;
-.

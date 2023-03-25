@@ -160,5 +160,11 @@ App.prototype ={
 ```
 
 
-## react - nodejs 서버 연동
+## react - mongoDB 연동
 
+mongoDB 설치 `npm install mongoose ---save`
+index.js 파일에 아래 코드 입력
+
+```js
+const mongoose = require('mongoose');
+```

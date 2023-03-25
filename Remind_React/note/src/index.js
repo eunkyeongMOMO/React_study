@@ -3,6 +3,20 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+const mongoose = require('mongoose');
+
+mongoose.connect(
+  process.env.MONGODB_URL ||
+    'mongodb+srv://eunkyeong01234@gmail.com:cupido112^^@cluster0.bueqv.mongodb.net/test',
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+  }
+).then(()=>{
+  console.log('MongoDB Connected')
+}).catch(err=>console.log(err))
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
