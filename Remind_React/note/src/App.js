@@ -1,10 +1,24 @@
 import './App.css';
-import { useState } from 'react'
+import { useState,useEffect } from 'react';
+import axios from 'axios';
 import PropTypes from 'prop-types'
 App.prototype ={
   title: PropTypes.number,
   posts:PropTypes.object
 }
+//axios 되는지 확인하긔
+axios({
+  method :'post',
+  url:'',
+  data:{
+  }
+})
+.then((rsp)=>{
+console.log(rsp)
+})
+.catch((error)=>{
+  console.log(error);
+})
 
 function App() {
   let [posts, setPosts] = useState(['첫번째','두번째','세번째']);
@@ -13,22 +27,28 @@ function App() {
   let [title, settitle] =useState(0);
   let [inputValue, setInputValue] =useState('');
 
-
+//like버튼 눌렀을때 state변경 예제
   let likePlus = (index) =>{
     let copyLikes = [...likes];
     copyLikes[index]= copyLikes[index]+1;
     setLikes(copyLikes);
   }
+
+  //글 수정버튼 예제
   let subjectModify = () =>{
     let copy =[...posts];
     copy[0]='수정했습니다.';
     setPosts(copy);
   }
+
+  //포스트 추가
   let addPost = ()=>{
     let copy = [...posts];
-    copy.unshift(inputValue);
+    if(inputValue===!''){
+    copy.unshift(inputValue);} //null 값 일땐 추가 안되게
     setPosts(copy);
   }
+  //포스트 삭제
   let deletePost = (i)=>{
     let copy =[...posts];
     copy.splice(i,1)
@@ -63,7 +83,7 @@ function App() {
       <input onChange={(e)=>{setInputValue(e.target.value)}}></input>
       <button onClick={addPost}>글추가</button>
       {
-      modal == true ? <Modal title={title} subjectModify={subjectModify} posts={posts}></Modal> : null 
+      modal === true ? <Modal title={title} subjectModify={subjectModify} posts={posts}></Modal> : null 
       }
     </div>
   );

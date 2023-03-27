@@ -1,10 +1,16 @@
 # React_Remind_230320
 
-프로젝트 전 기본문법 리마인드 
+프로젝트 전 기본 문법 리마인드 
+
+**git에서 pull받고 npm start 안될때 해결하는방법**
+1. pull받은 파일 중 package-lock.json 삭제
+2. 터미널에 npm install 후에 npm start 하면 잘 됨! 히히
+----------------------------------
 
 1. class말고 className으로 클래스명 부여
 2. 데이터 바인딩 {변수}
 3. 인라인 방식으로 style 적용시 style={}으로 적용, 카멜케이스로 작성해야함.
+
 ```js
 <div className="header__inner">
     <p style={color:blue, fontSize:'1.25rem'}>헬로</p>
@@ -153,6 +159,7 @@ App.prototype ={
 }
 ```
 
+<<<<<<< HEAD
 ### React 이미지 넣기
 
 이미지 파일 src/image/img01.jpg
@@ -183,3 +190,14 @@ app.js 에서는 import해서 써야한다.
 
 이렇게 쓰면 됨. 변수명은 바꿀수없음. export한 이름 그대로 써야함.
 
+=======
+
+## react - mongoDB 연동
+
+mongoDB 설치 `npm install mongoose ---save`
+index.js 파일에 아래 코드 입력
+
+```js
+const mongoose = require('mongoose');
+```
+>>>>>>> ff1414512bb4a9e30b15b43fab773deb3346baff
