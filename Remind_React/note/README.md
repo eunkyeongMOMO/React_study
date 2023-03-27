@@ -152,3 +152,34 @@ App.prototype ={
   posts:PropTypes.object
 }
 ```
+
+### React 이미지 넣기
+
+이미지 파일 src/image/img01.jpg
+
+css 에서는 ./image/img01.jpg 그대로 씁니다.
+app.js 에서는 import해서 써야한다. 
+
+`import 이미지명 from '이미지 경로'`
+
+근데 이렇게 했을때 안되는경우가 있음, json으로 불러온다던가...
+그럴땐 public에 넣으면 더 쉽게 불러올수 있음 아래 문법 쓰면 됨
+`<img src={process.env.PUBLIC_URL + '/logo192.png'} /> `
+
+
+## export, import
+
+`export default 변수명`
+
+파일에서 특정 변수를 내보내고 싶을때 씁니다.
+
+`import 변수명 from '변수있는 파일 경로'`
+
+변수, 함수 자료형 전부 export가능합니다. 
+파일마다 export default는 하나만 사용가능합니다. 따라서 여러개를 내보내고 싶을경우
+
+`export { 변수명01, 변수명02 }`
+`import { 변수명01, 변수명02 } from '파일경로';`
+
+이렇게 쓰면 됨. 변수명은 바꿀수없음. export한 이름 그대로 써야함.
+
