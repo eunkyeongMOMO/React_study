@@ -190,7 +190,48 @@ app.js 에서는 import해서 써야한다.
 
 이렇게 쓰면 됨. 변수명은 바꿀수없음. export한 이름 그대로 써야함.
 
-=======
+## Router 라이브러리 이용
+
+`npm install react-router-dom@6`
+
+index.js
+
+```js
+import {BrowserRouter} from 'react-router-dom';
+    <BrowserRouter>
+    <App />
+    </BrowserRouter>
+```
+
+App.js
+
+```js
+import {Routes, Route, Link, useNavigate,Outlet} from 'react-router-dom'
+//라우터 라이브러리에서 사용할 속성 가지고 오기
+  <Routes>
+      <Route path='/' element={메인페이지}/>
+      <Route path='/product' element={보여줄 페이지내용}/>
+  </Routes>
+  //Routes -> Route [나눌 페이지 갯수만큼 생성
+```
+함수명 | 사용법 | 이유
+--|--|--
+Routes | |Route 묶을때 사용 
+Route|`<Route path='/경로지정'>` | 페이지 path지정할때 사용
+Nested Routes|`<Route><Route/></Route>`| 경로안에 경로! detail/123 장점, 코드를 줄일수 있음
+Link  | `<Link to='path값'></Link>`| Link걸때 사용 (a 태그와 같다)
+useNavigate| `let navigate = useNavigate() onClick(()=>{navigate(이동할 경로)})`| 페이지 이동을 도와주는 함수, 일반적으로 변수에 담아 사용, link 대신 사용하는용도, `useNavigate(1)` 앞으로 한페이지이동, `useNavigate(-1)` 뒤로 한페이지 이동
+Outlet | `<Outlet></Outlet>`|Nested Routes 사용시 상위요소 어디에 보여줄지 정하는것. 상위요소랑 하위요소 둘다 같이 보여주고싶을때 사용..!
+
+
+**Route**
+
+`<Route path='*'>` 오타 포함한 경로가 없는 모든 주소
+
+*내일 회사가서 책보고 다시 정리하기*
+
+
+
 
 ## react - mongoDB 연동
 
