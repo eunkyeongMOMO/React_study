@@ -222,16 +222,41 @@ Nested Routes|`<Route><Route/></Route>`| 경로안에 경로! detail/123 장점,
 Link  | `<Link to='path값'></Link>`| Link걸때 사용 (a 태그와 같다)
 useNavigate| `let navigate = useNavigate() onClick(()=>{navigate(이동할 경로)})`| 페이지 이동을 도와주는 함수, 일반적으로 변수에 담아 사용, link 대신 사용하는용도, `useNavigate(1)` 앞으로 한페이지이동, `useNavigate(-1)` 뒤로 한페이지 이동
 Outlet | `<Outlet></Outlet>`|Nested Routes 사용시 상위요소 어디에 보여줄지 정하는것. 상위요소랑 하위요소 둘다 같이 보여주고싶을때 사용..!
+```js
+//예제
 
+    <Route path='/event' element={<Event></Event>}>
+        <Route path='one' element={<p>첫주문시 양배추즙 서비스</p>}/>
+        <Route path='two' element={<p>생일기념 쿠폰받기</p>}/>
+      </Route>
+
+function Event(){
+  return(
+    <>
+    <h3>오늘의 이벤트</h3>
+    <Outlet></Outlet>
+    </>
+  )
+}
+
+```
 
 **Route**
 
 `<Route path='*'>` 오타 포함한 경로가 없는 모든 주소
 
-*내일 회사가서 책보고 다시 정리하기*
+## URL 파라미터 
+> 페이지 여러개 만들고 싶을때 사용하는것. 
+```js
+//app.js
+<Route path="detail/:id" element={<Detail/>}>
 
+//detail.js
 
+import { useParams } from "react-router-dom";
 
+let 변수 = useParams();
+```
 
 ## react - mongoDB 연동
 
