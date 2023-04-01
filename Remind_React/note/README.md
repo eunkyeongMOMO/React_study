@@ -258,6 +258,31 @@ import { useParams } from "react-router-dom";
 let 변수 = useParams();
 ```
 
+## Lifecycle / useEffect
+
+> 컴포넌트의 주기,
+
+페이지에 출력(장착)되는것 [mount]
+state변환등으로 인해 업데이트되는것(재랜더링) [update]
+페이지에 출력되지 않는것(제거되는것) [unmount]
+
+**useEffect()**
+> 컴포넌트가 mount, update될 때 코드를 추가하여 실행하기 위한 훅
+>> useEffect() 랜더러가 랜더링을 한 직후에 부수효과로 실행하고 싶은 코드를 실행하는것 
+>useEffect 안에 있는 코드는 두번 실행됨.[디버깅을 위한것 / *빌드하고 배포시에는 한번 실행됨*] - 이거 싫으면 index.js 에 <React.StrictMode>이거 삭제하고 실핼하면 됨.
+
+> 장점 - useEffect 안에 있는 코드는 html 랜더링이 다 된 후에 동작합니다. [비동기적으로 사용하기 좋음 예)타이머, 서버에서 데이터가져오는것]
+
+>>side Effect? 함수의 핵심기능과 상관없는 부가기능 그래서 useEffect임, 
+
+
+```js
+import { useEffect } from "react";
+//import해와야 실행됨
+
+```
+
+
 ## react - mongoDB 연동
 
 mongoDB 설치 `npm install mongoose ---save`
