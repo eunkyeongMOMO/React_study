@@ -159,7 +159,6 @@ App.prototype ={
 }
 ```
 
-<<<<<<< HEAD
 ### React 이미지 넣기
 
 이미지 파일 src/image/img01.jpg
@@ -273,17 +272,97 @@ state변환등으로 인해 업데이트되는것(재랜더링) [update]
 
 > 장점 - useEffect 안에 있는 코드는 html 랜더링이 다 된 후에 동작합니다. [비동기적으로 사용하기 좋음 예)타이머, 서버에서 데이터가져오는것]
 
->>side Effect? 함수의 핵심기능과 상관없는 부가기능 그래서 useEffect임, 
+>>side Effect? 함수의 핵심기능과 상관없는 부가기능 그래서 훅 이름이 useEffect임, useEffect는 페이지 랜더와 별개의 부가기능을 추가하는것임
 
+> useEffect 두번째 파라미터로 []를 넣을수 있다. 여기에는 변수,state를 넣을수 있는데 **[]안에 있는 변수, state가 변할때만 useEffect안의 코드를 실행해줌** 아무것도 안쓰면 로드시(mount) 최초 1회만 실행 ->재랜덩링되어도 실행안됨, 
+>>[]안에 여러개의 state,변수를 넣을수 있다. - 컴포넌트안에서 선언된 state, 변수만 넣을수 있음.
+
+> use effect실행전에 실행하고 싶은 코드는 return ()=>{}에 넣어 실행시키면 됨
 
 ```js
 import { useEffect } from "react";
-//import해와야 실행됨
 
+ useEffect(()=>{
+    let setTimeOut= setTimeout(()=>{
+        setalert(alert=false);
+         return () => {clearTimeout(setTimeOut)}
+
+    },2000), [] 
+    //clean up function
+     return () => {clearTimeout(setTimeOut)} 
+    
+})
+
+```
+**clean up function**
+리액트특성상, 랜더링이 자주 일어나기때문에 기존 작업들을 제거하는 작업이 필요하다. 비효율 방지. mount시에는 실행안됨, unmount때는 실행됨
+
+
+## React에서 Axios 사용
+`npm install axios` 로 라이브러리 설치후 최상단 컴포넌트 파일에 
+`import {axios} from 'axios'` 임포트 한 다음 GET, POST요청 하면 된다.
+
+```js
+  axios.get('요청할 url')
+    .then(결과)=>{
+      결과.data //요청한 데이터만 가져와 사용할경우. .data로 입력해줘야 데이터만 가져와짐. 결과로 입력하면 다른 값들도 같이 넘어오기때문에 에러 발생할수도 있긔...!
+    }
+  .carch(()=>{})//서버 통신 실패했을때 실행할 코드 입력
+```
+성공시 atatus:200값을 같이 넘겨주기때문에 해당값을 확인-> 성공여부를 체크해서 코드를 넣을수있다
+
+## Redux 사용하기
+> Component 들이 props 없이 state 공유
+props 사용안해도 됨.
+state공유에 용이하고 유지보수하기에도 편해서 씀
+간단한 작업은 그냥 props쓰는게 편함...!
+
+설치
+`npm install @reduxjs/toolkit react-redux`
+
+index.js
+
+```js
+import store from './store.js'
+   <Provider store={store}>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </Provider>
 ```
 
 
+store.js
+```js
+import { configureStore,createSlice } from '@reduxjs/toolkit'
+
+//state만들기
+createSlice({
+  name: 'state이름',
+  initialState:'state값'
+})
+
+export default configureStore({
+  reducer: {
+    //state 등록하기
+    state이름 : simba.reducer
+    //뒤에 꼭 reducer라고 붙여야함.
+   }
+}) 
+```
+**가져다가 쓸때**
+```js
+import {} from 'react-redux'
+
+//store에 등록된 모든 state들을 가져옴
+let 변수 = useSeclector((state)=>{return state})
+
+//store에 등록된 특정 state를 가져오고싶을때
+let 변수 = useSeclector((state)=>{return state.simba})
+
+```
 ## react - mongoDB 연동
+
 
 mongoDB 설치 `npm install mongoose ---save`
 index.js 파일에 아래 코드 입력
@@ -291,4 +370,3 @@ index.js 파일에 아래 코드 입력
 ```js
 const mongoose = require('mongoose');
 ```
->>>>>>> ff1414512bb4a9e30b15b43fab773deb3346baff
