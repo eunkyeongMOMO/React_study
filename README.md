@@ -409,8 +409,8 @@ dispatch(state 변경함수()) //dispatch에 감싸서 써야함.
 ```
 장점 컴포넌트가 여러개일 경우, 오류가 났을때 디버깅하기 쉽당...!
 버그 생기면 무조건 store.js 부터 살펴보면댐
- 0
 
+공유가 필요없는 state의 경우, 사용되는 곳에서 useState쓰는게 훨씬나음
 ## react - mongoDB 연동
 
 mongoDB 설치 `npm install mongoose ---save`
@@ -418,8 +418,7 @@ index.js 파일에 아래 코드 입력
 
 ```js
 const mongoose = require('mongoose');
-```
->>>>>>> ff1414512bb4a9e30b15b43fab773deb3346baff
+
 
 
 ## React Project
