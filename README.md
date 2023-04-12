@@ -411,6 +411,21 @@ dispatch(state 변경함수()) //dispatch에 감싸서 써야함.
 버그 생기면 무조건 store.js 부터 살펴보면댐
 
 공유가 필요없는 state의 경우, 사용되는 곳에서 useState쓰는게 훨씬나음
+
+## useMemo
+
+컴포넌트 성능을 최적화 시킬수 있는 hooks, 컴포넌트가 랜더링될때 최초 한번만 실행해줌 
+useEffect랑 비슷하게 사용할수있음.
+> useEffect랑 다른점은 실행시점이 다른것, useEffect는 컴포넌트가 랜더링 된 이후에 실행되지만 useMemo는 컴포넌트가 랜더링 될때 같이 실행됨.
+
+```js
+const result = useMemo(()=>{return 실행할 함수()},[state])
+//state 변화할때만 변경시킬수 있음
+```
+
+
+
+
 ## react - mongoDB 연동
 
 mongoDB 설치 `npm install mongoose ---save`
